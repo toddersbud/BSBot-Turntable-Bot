@@ -1,13 +1,13 @@
 {"botinfo":
-	{"auth":"auth+live+759fa4415fab12c835a2c133558a296d2f0bc090",
-	"userid":"4f71b910590ca21a1c000a3b",
-	"laptoptype":"chrome"},
-"roomid":"4f686eca0c4cc8564952076c",
+	{"auth":"auth+live+90684cb65860f8b57eeb441d6a17aae7d51b54e4",
+	"userid":"4fba5fdcaaa5cd139a000128",
+	"laptoptype":"mac"},
+"roomid":"4fba58c92e381764f1077e77",
 "admins":
-	{"mainadmin":"4f0c63d4590ca2316f002990",
-	"admins": ["4f0c8870590ca2316f002a5b","4f181acb590ca21f70000f48"] },
+	{"mainadmin":"4df960574fe7d056c007aac2",
+	"admins": ["4df960574fe7d056c007aac2","4e0b71c1a3f751467507b764","4e0b8bada3f751467c091aaf"] },
 "database":
-	{"usedb":false,
+	{"usedb":true,
 	"dbname":"nodejs_mysql_bsbot", 
     "logchat":false,
 	"tablenames": 
@@ -17,7 +17,7 @@
 		"holiday": "HOLIDAY_GREETINGS"},
 	"login":{
 		"user":"root",
-		"password":"alpine"}},
+		"password":""}},
 "lastfm":
 	{"useapi":false,
 	"lastfmkey":"#####"},
@@ -27,21 +27,21 @@
 	"host": "localhost"},
 "responses":
 	{"respond":true,
-	"reportsongstats":true,
+	"reportsongstats":false,
 	"welcomeusers":true,
     "welcomepm":true,
 	"greeting":"Welcome, ",
-	"ownerresponse":"sharedferret made me, BeSublime customized me!",
+	"ownerresponse":"I'm owned by no man. Fueled by beer and mustache whiskers.",
 	"sing":true, 
 	"rules": 
 		{"description": "No queue, fastest finger, be friendly :)"}
 	},
-"consolelog":false,
-"bonusvote":"VOTE",
+"consolelog":true,
+"bonusvote":"AUTO",
 "enforcement":
 	{"enforceroom":false,
     "waitlist":false,
-	"songstoplay":2,
+	"songstoplay":5,
 	"stepuprules":
 		{"waittostepup":true,
 		"waittype":"SONGS",

@@ -16,7 +16,7 @@
 */
 
 var version = '[experimental] 2012.03.23';
-var botname = 'meow';
+var botname = 'mustache';
 
 var fs = require('fs');
 var url = require('url');
@@ -244,18 +244,18 @@ bot.on('registered',   function (data) {
                         var curtime = results[0]['now'];
                         //Send a welcome PM if user hasn't joined in 36+ hours
                         if ((new Date().getTime() - time.getTime()) > 129600000) {
-                            output({text: 'Welcome to East Coast Indie! No queue, fastest finger, be friendly! '
+                            output({text: 'Welcome to the Build Guild Louisville Room! No queue, fastest finger, be friendly! '
                             + 'Type \'commands\' to see a list of commands I can respond to.',
                             destination: 'pm', userid: user.userid});
                         }
                     } else {
-                        output({text: 'Welcome to East Coast Indie! No queue, fastest finger, be friendly! '
+                        output({text: 'Welcome to the Build Guild Louisville Room! No queue, fastest finger, be friendly! '
                             + 'Type \'commands\' to see a list of commands I can respond to.',
                             destination: 'pm', userid: user.userid});
                     }
             });
         } else {
-            output({text: 'Welcome to East Coast Indie! No queue, fastest finger, be friendly! '
+            output({text: 'Welcome to the Build Guild Louisville Room! No queue (yet), fastest finger, be friendly! '
                 + 'Type \'commands\' to see a list of commands I can respond to.',
                 destination: 'pm', userid: user.userid});
         }
@@ -382,6 +382,10 @@ bot.on('newsong', function (data) {
 		bot.remDj(currentsong.djid);
 		bot.speak('NO.');
 	}
+
+    bot.snag();
+   bot.playlistAdd(data.room.metadata.current_song._id);
+   bot.becomeFan(data.room.metadata.current_dj);
 
 	//Enforce stepdown rules
 	if (usertostep != null) {
@@ -769,8 +773,23 @@ function getTheme() {
 //Add the currently playing song to the bot's queue
 function snagSong() {
 	bot.snag(function() {
-		bot.speak('Heart fart! <3');
+		bot.speak(currentsong.song);
+
+        //console.log(songId);
 	});
+    //bot.playlistAdd(false, songId);
+    //bot.playlistAdd(songId);
+    //bot.snag();
+
+}
+
+function addToPlaylist(){
+    bot.speak(':poop:');
+    bot.speak()
+    //bot.playlistAdd(currentsong.song);
+    //bot.playlistAdd(false, songId, callback);
+    //bot.playlistAdd("default", songId);
+    //alert(songId);
 }
 
 //The bot will respond to a Reptar call with a variant of 'rawr!' based on
@@ -1172,6 +1191,10 @@ bot.on('tcpMessage', function (socket, msg) {
                 } else if (jsonmsg.parameter == 'down') {
                     bot.vote('down');
                 }
+                break;
+
+            case 'snag':
+                bot.snag();
                 break;
                 
             case 'stepup':
@@ -2139,6 +2162,15 @@ function handleCommand (name, userid, text, source) {
         }
         break;
 
+
+        case '\.r':
+        if (admincheck(userid)) {
+            addToPlaylist();
+        }
+        break;
+
+
+
     //Pulls a DJ after their song.
     case 'pulldj':
         if (admincheck(userid)) {
@@ -2233,14 +2265,14 @@ function handleCommand (name, userid, text, source) {
     }
     
     //Have the bot step up to DJ
-    if (text.toLowerCase() == (botname + ', step up')) {
+    if (text.toLowerCase() == (botname + ' party')) {
         if (admincheck(userid)) {
             bot.addDj();
         }
     }
     
     //Have the bot jump off the decks
-    if (text.toLowerCase() == (botname + ', step down')) {
+    if (text.toLowerCase() == (botname + ' down')) {
         if (admincheck(userid)) {
             bot.remDj(config.botinfo.userid);
         }
